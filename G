@@ -1,0 +1,142 @@
+%!
+%G
+%ps golfing utilities collection
+%
+%eg.
+%  %!
+%  n(G)run % where n controls which pieces are activated:
+%
+%  (G)run
+%  0(G)run %activate . $ @ #
+%     equivalent to the former (and still valid): (G)run
+%
+%  1(G)run %activate . $ @ # and operator abbreviations
+%     equivalent to the former:  (G)run A  % load abbreviation dict,
+%
+%  2(G)run $ %activate . $ @ # and begin implicit procedure block
+%     equivalent to the former:  (G)run D  % begin implicit procs
+%
+%  3(G)run $ %activate all of the above
+%     equivalent to the former:  (G)run A D % abbreviations and implicit procs
+%
+% implicit procedure blocks require a $ to activate, since it must 
+% be delayed until `currentfile` is the program file.
+%
+%Version 0b
+%0a bugfixes. remove output from ABBR construction
+%0b add n argument
+
+%! 
+%operators by code number or number-strings
+%by dynamically constructing a binary token in a string
+
+/.{<920>dup 1 4 3 roll put cvx exec}def  % execute operator by table number
+/${//. 73 .}def %73== /forall  % execute each char in string as operator number
+/@{{32 sub //. exec}73 .}def % ' '->0
+/#{{95 add //. exec}73 .}def % ' '->127
+
+%!
+%implicit procedure definitions
+%-library- version
+
+%D begins an implicit-procedure block,
+%defining the next line as A, the next as B, ...
+%according to ascii sequence, until a blank line.
+/D{[(A){
+    currentfile 99 string readline not { pop exit } if
+    dup length 0 eq { exit } if
+    cvx
+    1 index 1 string copy dup dup 0 get 1 add 0 exch put
+}loop>>begin}def
+
+%!
+%abbr.ps
+% abbreviated system names
+% exports (defines) 1 procedure:
+%   -  ABBR  dict
+% which generates an abbreviation dictionary.
+% 
+% This allows you to use alphabetic abbreviations for
+% standard systemdict names, suxh as:
+%
+%   a  %= abs 
+%   ad %= add 
+%   mu %= mul 
+%   pr %= print 
+%   g  %= ge 
+%   f  %= file 
+%   etc. Check PLRM 2ed or 3ed, Appendix F Encoded System Names
+% Edit for compilation: name ABBR has been shortened to A
+%                       and dict is left on dictstack.
+
+/A {
+    2 dict begin
+    225 -1 0 {  % generate defs in reverse alphabetic (numeric) order
+        %dup =only( )=only
+        <910> dup 1 4 3 roll put cvx exec
+        %dup =only( )=only
+        cvx dup =string cvs % op str
+        %pstack()= stop
+        exch
+        dup { currentdict end exch load
+        } stopped { pop begin cvlit }{ exch begin exch pop } ifelse
+        exch
+        %pstack() = %stop
+        0
+        1 1 3 index length
+        %1 sub
+        { % opname str 0 i
+            3 copy getinterval % opname str 0 i str[0,i]
+            %dup =only( )=only
+            cvn 4 index def
+            pop % opname str 0
+        } for
+        %()=
+        pop pop pop
+    } for
+    0 1 225 {  % print out the shortest ABBR name for each system name.
+        %dup =only( )=only
+        <910> dup 1 4 3 roll put cvx exec % opname
+        %dup =only( )=only
+        cvx dup =string cvs
+        exch
+        dup { currentdict end exch load
+        } stopped { pop begin cvlit }{ exch begin exch pop } ifelse
+        exch
+        0
+        {
+            1 1 3 index length 1 sub {
+                3 copy getinterval 
+                dup cvn load % opname str 0 i str[0,i] loaded
+                5 index eq {
+                    pop%=only( )=only
+                    pop
+                    stop
+                }{
+                    pop pop
+                } ifelse
+            } for
+
+        } stopped pop
+        %()=
+        pop pop pop
+    } for
+    /A where pop /A currentdict put %memo
+    %currentdict end
+} bind def
+
+% process options
+count 0 ne { % empty stack: do nothing
+    dup 1 and 0 ne { % n&1
+        2 and 0 ne { % n&2  1+2
+            A
+            {D} (?) % "exec" activate selected components with $
+        }{           % 1
+            A
+        } ifelse
+    }{
+        2 and 0 ne { % 2
+            {D} (?) % "exec" activate selected components with $
+        } if
+    } ifelse
+} if
