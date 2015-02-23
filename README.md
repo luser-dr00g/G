@@ -17,3 +17,13 @@ https://groups.google.com/d/topic/comp.lang.postscript/81Rlq5HeaNg/discussion
 
 An earlier thread about golfing.
 https://groups.google.com/d/topic/comp.lang.postscript/q9jkuEkEiQo/discussion
+
+Earlier golfing the Sierpinski Triangle (with thomasW).
+https://groups.google.com/d/topic/comp.lang.postscript/tIkud9Ug0Vc/discussion
+
+Earlier thread about Lindenmayer systems and Line Fractals.
+https://groups.google.com/d/topic/comp.lang.postscript/5xKJBYOhmP4/discussion
+
+Dang! I found one more, before all the others.
+https://groups.google.com/d/topic/comp.lang.postscript/5ivdnXta_Bc/discussion
+
