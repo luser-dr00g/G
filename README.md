@@ -27,3 +27,5 @@ https://groups.google.com/d/topic/comp.lang.postscript/5xKJBYOhmP4/discussion
 Dang! I found one more, before all the others.
 https://groups.google.com/d/topic/comp.lang.postscript/5ivdnXta_Bc/discussion
 
+An old idea.
+https://groups.google.com/d/topic/comp.lang.postscript/0tW8JTt451Q/discussion
