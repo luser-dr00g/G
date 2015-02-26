@@ -1,6 +1,31 @@
 # G
 a postscript golfing library
 
+The 'G' library offers a base-level, activated by running the file within your Postscript program `(G)run`, defining these functions:
+
+ * *integer*  `.`  *-*  
+    execute operator by code-number (PLRM, Appendix F)
+ * *string*  `$`  *-*  
+    execute each char in string using `.`
+ * *string*  `@`  *-*  
+    execute each char in string using `.`, first subtracting 32
+ * *string*  `#`  *-*  
+    execute each char in string using `.`, first adding 95
+ * composite [index-array]  `!`  *-*  
+    fetch value from nested composite object using indices from array
+ * composite [index-array]  `*`  *-*  
+    store value in nested composite object using indices from array
+
+An optional level, selected by prefixing the number 1 to the library-load command `1(G)run`, adds abbreviated operator names. As with the `.` and other operator shortcut functions, the names are defined by generating the codes in descending order, scanning them to produce operator objects and defining them in a dictionary. Since the codes as listed in the PLRM Appendix F are already alphabetized, this results in the shortest, earliest (alphabetically) name for each operator.
+
+An optional level, selected by prefixing the number 2 and suffixing the dollar-sign `$` to the library-load command `2(G)run $` (or just suffixing the letter `D`, eg. `(G)run D`), begins an *implicit-procedure block*. Each line, until the next blank line is scanned and defined as upper-case single-letter names, `/A` `/B` `/C` ....
+
+The two options may be combined by prefixing the number 3 and suffixing the dollar-sign `$`. The trailing dollar-sign is needed to execute the implicit-procedure block *after* the library file has finished and `currentfile` refers to the client program file.
+
+More details (and the code itself) are in the `G` source file itself.
+
+# History
+
 Previously "released" to usenet.
 https://groups.google.com/d/topic/comp.lang.postscript/3gaExFSE4ZE/discussion
 
