@@ -60,3 +60,5 @@ http://codegolf.stackexchange.com/revisions/3877/5
 
 At revision 7, I added the working version with comment-key. The program works by re-using tokens from the main procedure by using strings of chars as indices. So the main procedure does double-duty as code-to-be-executed and storage-bank-of-names-and-numbers.
 http://codegolf.stackexchange.com/revisions/3877/7
+
+But as later revisions show, ultimately accessing operators with strings of numbers yields far greater gains.
