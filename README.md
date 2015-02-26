@@ -54,3 +54,9 @@ https://groups.google.com/d/topic/comp.lang.postscript/5ivdnXta_Bc/discussion
 
 An old idea.
 https://groups.google.com/d/topic/comp.lang.postscript/0tW8JTt451Q/discussion
+
+The seeds of the idea came from my first postscript codegolf. Around revision 5.
+http://codegolf.stackexchange.com/revisions/3877/5
+
+At revision 7, I added the working version with comment-key. The program works by re-using tokens from the main procedure by using strings of chars as indices. So the main procedure does double-duty as code-to-be-executed and storage-bank-of-names-and-numbers.
+http://codegolf.stackexchange.com/revisions/3877/7
