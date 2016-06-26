@@ -1,0 +1,11 @@
+(mat.ps)run
+/lineto{{lineto}stopped{moveto}if}bind def
+0 10 360 { /i exch def
+
+    /ARGUMENTS [ [ 0 0 0 0 0 i ] { 10 string cvs }forall ] def
+    gsave
+    (hc.ps)run
+    grestore
+
+} for
+quit

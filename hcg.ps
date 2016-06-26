@@ -1,0 +1,20 @@
+(mat.ps)run 1(G)run/li{{li}stopp{moveto}if}bi d
+ARGUMENTS al po{F E D C B A}{ex cvr d}fora/V[[[0
+0 0 0][1 0 0 0][1 0 1 0][0 0 1 0][0 1 0 0][1 1 0 0][1
+1 1 0][0 1 1 0][0 0 0 1][1 0 0 1][1 0 1 1][0 0 1 1][0
+1 0 1][1 1 0 1][1 1 1 1][0 1 1
+1]]{[ex{.5 su}fora]}fora]d/f[[0 1 2 3][0 1 5 4][0
+1 9 8][0 3 7 4][0 3 11 8][0 4 12 8][1 2 6 5][1 2 10 9][1
+5 13 9][2 3 7 6][2 3 11 10][2 6 14 10][3 7 15 11][4 5 6 7][4
+5 13 12][4 7 15 12][5 6 14 13][6 7 15 14][8 9 10 11][8 9 13
+12][8 11 15 12][9 10 14 13][10 11 15 14][12 13 14 15]]d/ROT[[[1
+0 0 0][0 A cos A sin neg 0][0 A sin A cos 0][0 0 0
+1]][[B cos 0 B sin 0][0 1 0 0][B sin neg 0 B cos 0][0 0 0
+1]][[C cos C sin neg 0 0][C sin C cos 0 0][0 0 1 0][0 0 0
+1]][[D cos 0 0 D sin][0 1 0 0][0 0 1 0][D sin neg 0
+0 D cos]][[1 0 0 0][0 E cos 0 E sin neg][0 0 1 0][0 E sin
+0 E cos]][[1 0 0 0][0 1 0 0][0 0 F cos F sin neg][0 0 F sin
+F cos]]]d/P{al po{w z y x}{ex d}fora x 2 mu z 2 ad div
+y 2 mu z 2 ad div neg ex}d/V V ROT{transpose matmul}fora d
+300 400 transl currentlinew 100 du du sc div setlinew
+f{{V ex get P li}fora clo stro}fora showp

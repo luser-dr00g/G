@@ -22,6 +22,35 @@ An optional level, selected by prefixing the number 2 and suffixing the dollar-s
 
 The two options may be combined by prefixing the number 3 and suffixing the dollar-sign `$`. The trailing dollar-sign is needed to execute the implicit-procedure block *after* the library file has finished and `currentfile` refers to the client program file.
 
+New functions added:
+
+    % start inc fin  iter  proc
+
+    % (string){proc}  foreach  -
+    %                   (s) proc
+    %                   (t) proc
+    %                   ...
+    % [/A/R/R/A/Y]{proc}  foreach  -                 
+    %                   [/A] proc
+    %                   [/R] proc
+    %                   ...
+    %                   
+    % <</dict<def>/key(val)...>>  foreach  -
+    %                   <</dict<def>>> proc
+    %                   <</key(val)>> proc
+    %                   ...
+
+    % (s1) (s2) (s3) ... (sN) n  ncat  (s1s2s3...sN)
+    % [a1] [a2] [a3] ... [aN] n  ncat  [a1 a2 a3 ... aN]
+
+    % (s1) (s2)  cat  (s1s2)
+    % [a1] [a2]  cat  [a1 a2]
+
+    % [ (s1) (s2) ... (sn) ]  acat  (s1s2...sn)
+    %array-of-string  acat  string
+    %array-of-arrays  acat  array
+
+
 More details (and the code itself) are in the `G` source file itself.
 
 # History

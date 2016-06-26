@@ -1,0 +1,63 @@
+(mat.ps)run 3(G)run $
+t sin %/A
+A neg %/B
+t cos %/C
+0 0 %/D
+0 1 %/E
+1 0 %/F
+2 mu Z 2(!V)@ %/G  %ad div %add div %108 1 54
+idi 2 mo .5 su %idiv mod sub %/H %106 169 51
+(>8)$ %/I %exch dup
+[F D] %/J
+[D E] %/K
+[E D] %/L
+[D F] %/M
+
+
+3 4
+100(&>88)$ %currentlinewidth exch dup dup %38
+(,)#  %scale %139-95=44
+div(<N)# %div setlinewidth %54 155-95=60 %translate %173-95=78
+%/V
+[E 15{[ I
+    1 H I
+    2 H I
+    4 H ex
+    8 H]}fo]
+
+E 5{ARGUMENTS 1(XK/)$ %index get cvr %88 75 47
+    /t ex d %exch def %62 51
+    {{J[0 C B 0][0 A C 0]K} 
+     {[C 0 A 0]L[B 0 C 0]K} 
+     {[C B D][A C D]M K} 
+     {[C D A]L M[B D C]}
+     {J[0 C 0 B]M[0 A 0 C]}
+     {J L[D C B][D A C]}}
+    (>K)$ %exch get %62 75
+    [
+        (>?)$ %exch exec %62 63
+    ]
+    transpose matmul
+}fo %for
+du %dup
+%d %def
+%{transpose matmul}fora d
+
+%[E 9 11 10 8 9 13 15 11 3 7 15 14 10 2 6 14 12 8 0 4 12 13 5 7 6 4 5 1 3 2 0]
+%<0001090b0a08090d0f0b03070f0e0a02060e0c0800040c0d050706040501030200>
+%          abcdef
+%0123456789:;<=>?
+(019;:89=?;37?>:26><804<=576451320)
+{48 su get % 169 75 %V (>K)$ %sub %exch get
+
+    al po %aload pop %2 117
+    {W Z Y X}{(>3)$ %exch def
+    }fora %forall %2 117  62 51 73
+    X G
+    Y G
+    {li}(D)# %stopped
+    {mov}
+    if du%(T8)$ %if %84 du %dup 56
+}
+%<49a7a1>$ %forall stroke showpage %73 167-95=72 161-95=66
+fora(HB)#
