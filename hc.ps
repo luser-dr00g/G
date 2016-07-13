@@ -1,13 +1,18 @@
 300 400 translate
 currentlinewidth
-100 dup dup scale
+250 %100
+dup dup scale
 div setlinewidth
-(mat.ps)run
+%(mat.ps)run
 ARGUMENTS aload pop{f e d c b a}{exch cvr def}forall
 /m{2 mod .5 sub}def
 /P{aload pop{w z y x}{exch def}forall
-    x 2 mul z 2 add div
-    y 2 mul z 2 add div
+    x 2 mul
+        z 2 add div
+        w 2 add div
+    y 2 mul
+        z 2 add div
+        w 2 add div
     {lineto}stopped{moveto}if
 }bind def
 /V[0 1 15{[exch dup m 1 index 2 idiv m 2 index 4 idiv m 4 3 roll 8 idiv m]}for]
@@ -17,9 +22,12 @@ ARGUMENTS aload pop{f e d c b a}{exch cvr def}forall
      [[d cos 0 0 d sin][0 1 0 0][0 0 1 0][d sin neg 0 0 d cos]]
      [[1 0 0 0][0 e cos 0 e sin neg][0 0 1 0][0 e sin 0 e cos]]
      [[1 0 0 0][0 1 0 0][0 0 f cos f sin neg][0 0 f sin f cos]]]
-{transpose matmul} forall def 
+{//transpose exec //matmul exec} bind forall def 
+%erasepage
 
-[0 1 9 11 10 8 9 13 15 11 3 7 15 14 10 2 6 14 12 8 0 4 12 13 5 7 6 4 5 1 3 2 0]
+[0 1 9 11 10 8 9 13 15 11 3 7 15 14 10 2 6 14 12 8
+0 4 12 13 5 7 6 4 5 1 3 2 0]
 {V exch get P} forall closepath stroke
+[0 1 3 2]{V exch get P}forall 0 0 1 setrgbcolor fill
 
-showpage
+%flushpage %15000{50 dict pop}repeat %erasepage%showpage

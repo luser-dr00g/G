@@ -1,11 +1,318 @@
-(mat.ps)run
-/lineto{{lineto}stopped{moveto}if}bind def
-0 10 360 { /i exch def
+%%BoundingBox: 120 220 480 580
 
-    /ARGUMENTS [ [ 0 0 0 0 0 i ] { 10 string cvs }forall ] def
+%!
+%mat.ps
+%Matrix and Vector math routines
+
+/ident { 1 dict begin /n exch def
+    [
+    1 1 n { % [ i
+        [ exch % [ [ i
+        1 1 n { % [ [ i j
+            1 index eq { 1 }{ 0 } ifelse % [ [ i b
+            exch % [ [ b i
+        } for % [ [ b+ i
+        pop ] % [ [ b+ ]
+    } for % [ [b+]+ ]
+    ]
+end } def
+
+/rotx { 1 dict begin /t exch def
+    [ [ 1  0      0         ]
+      [ 0  t cos  t sin neg ]
+      [ 0  t sin  t cos     ] ]
+end } def
+
+/roty { 1 dict begin /t exch def
+    [ [ t cos      0  t sin ]
+      [ 0          1  0     ]
+      [ t sin neg  0  t cos ] ]
+end } def
+
+/rotz { 1 dict begin /t exch def
+    [ [ t cos  t sin neg  0 ]
+      [ t sin  t cos      0 ]
+      [ 0      0          1 ] ]
+end } def
+
+/rotxy { 1 dict begin /t exch def
+    [ [ t cos  t sin neg  0  0 ]
+      [ t sin  t cos      0  0 ]
+      [ 0      0          1  0 ]
+      [ 0      0          0  1 ] ]
+end } def
+
+/rotyz { 1 dict begin /t exch def
+    [ [ 1  0      0          0 ]
+      [ 0  t cos  t sin neg  0 ]
+      [ 0  t sin  t cos      0 ]
+      [ 0  0      0          1 ] ]
+end } def
+
+/rotxz { 1 dict begin /t exch def
+    [ [ t cos     0  t sin  0 ]
+      [ 0         1  0      0 ]
+      [ t sin neg 0  t cos  0 ]
+      [ 0         0  0      1 ] ]
+end } def
+
+/rotxw { 1 dict begin /t exch def
+    [ [ t cos     0  0  t sin ]
+      [ 0         1  0  0     ]
+      [ 0         0  1  0     ]
+      [ t sin neg 0  0  t cos ] ]
+end } def
+
+/rotyw { 1 dict begin /t exch def
+    [ [ 1  0      0  0         ]
+      [ 0  t cos  0  t sin neg ]
+      [ 0  0      1  0         ]
+      [ 0  t sin  0  t cos     ] ]
+end } def
+
+/rotzw { 1 dict begin /t exch def
+    [ [ 1  0  0      0         ]
+      [ 0  1  0      0         ]
+      [ 0  0  t cos  t sin neg ]
+      [ 0  0  t sin  t cos     ] ]
+end } def
+
+/.error where { pop /signalerror { .error } def } if
+
+/dot { % u v
+    2 copy length exch length ne {
+        /dot cvx /undefinedresult signalerror } if
+    % u v
+    0 % u v sum
+    0 1 3 index length 1 sub { % u v sum i
+        3 index 1 index get exch % u v sum u_i i
+        3 index exch get % u v sum u_i v_i
+        mul add % u v sum
+    } for % u v sum 
+    3 1 roll pop pop % sum
+} bind def
+
+% [ x1 x2 x3 ] [ y1 y2 y3 ]  cross  [ x2*y3-y2*x3 x3*y1-x1*y3 x1*y2-x2*y1 ]
+/cross { % u v
+    dup length 3 ne 2 index length 3 ne or {
+        /cross cvx /undefinedresult signalerror } if
+    % u v
+    exch aload pop 4 3 roll aload pop % x1 x2 x3 y1 y2 y3
+    [
+        5 index 2 index mul % ... [ x2*y3
+        3 index 6 index mul sub % ... [ x2*y3-y2*x3
+        5 index 5 index mul % ... [ x2*y3-y2*x3 x3*y1
+        8 index 4 index mul sub % ... [ x2*y3-y2*x3 x3*y1-x1*y3
+        8 index 5 index mul % ... [ x2*y3-y2*x3 x3*y1-x1*y3 x1*y2
+        8 index 7 index mul sub % ... [ x2*y3-y2*x3 x3*y1-x1*y3 x1*y2-x2*y1
+    ]
+    7 1 roll 6 { pop } repeat
+} bind def
+
+/transpose { STATICDICT begin
+    /A exch def
+    /M A length def
+    /N A 0 get length def
+    [
+    0 1 N 1 sub { /n exch def
+        [
+        0 1 M 1 sub { /m exch def
+            A m get n get
+        } for
+        ]
+    } for
+    ]
+end } dup 0 6 dict put def
+
+/matmul { STATICDICT begin
+    /B exch def
+    B 0 get type /arraytype ne { /B [B] def } if
+    /A exch def
+    A 0 get type /arraytype ne { /A [A] def } if
+    /Q B length def
+    /R B 0 get length def
+    /P A length def
+    Q A 0 get length ne {
+        /A A transpose def
+        /P A length def
+        Q A 0 get length ne {
+            A B end /matmul cvx /undefinedresult signalerror
+        } if
+    } if
+
+    [
+    0 1 P 1 sub { /p exch def % rows of A
+        [
+        0 1 R 1 sub { /r exch def % cols of B
+            0
+            0 1 Q 1 sub { /q exch def % terms of sum
+                A p get q get
+                B q get r get mul
+                add
+            } for
+        } for
+        ]
+    } for
+    ]
+
+end } dup 0 10 dict put def
+
+%u v {operator}  vop  u(op)v
+%apply a binary operator to corresponding elements
+%in two vectors producing a third vector as result
+/vop { 10 dict begin
+    /op exch def
+    2 copy length exch length ne {
+        /op load /vop cvx end /undefinedresult signalerror
+    } if
+
+    [ 3 1 roll % [ u v
+    0 1 2 index length 1 sub [ % [ ... u v i
+        %3 copy exch pop get % u v i u_i
+        3 /copy load /exch load /pop load /get load
+        %3 copy pop get      % u v i u_i v_i
+        3 /copy load /pop load /get load
+        %op exch pop         % u v u_i(op)v_i
+        /op load /exec load /exch load /pop load
+        3 1 /roll load       % u_i(op)v_i u v
+    ] cvx end
+    for % [ ... u v
+    pop pop ]
+
+} def
+
+%length of a vector
+/mag { 0 exch { dup mul add } forall } def
+
+% u v {operator}  sop  u(op)v
+% where one of u or v is a scalar
+% and the other is a vector
+/sop {
+    3 1 roll
+    dup type /arraytype eq { % v array
+        exch % v u
+        [ exch % v [ u
+        2 index length 1 sub { dup } repeat % v [ u^#v
+        ] exch % u v
+    }{ % v scalar
+        [ exch % u [ v
+        2 index length 1 sub { dup } repeat % u [ v^#u
+    } ifelse
+    3 2 roll
+    vop
+} def
+%4 [ 2 3 4 ] { add } sop == 
+
+/E [ 1 -20 1 ] def
+/x0 E 0 1 getinterval cvx def
+/y0 E 1 1 getinterval cvx def
+/z0 E 2 1 getinterval cvx def
+/sq {dup mul} def
+/p x0 sq y0 sq add sqrt def
+/r x0 sq y0 sq z0 sq add add sqrt def
+/PM [ [ r sq y0 mul neg  r sq x0 mul  0  0]
+      [ r x0 z0 mul mul neg  r y0 z0 mul mul neg  r p sq mul  0]
+      [ 0  0  0  r p mul]
+      [ p x0 mul neg  p y0 mul neg  p z0 mul neg  r sq p mul] ] def
+
+%PM ==
+
+/m{2 mod .5 sub}def
+/P{
+    aload pop{w z y x}{exch def}forall
+    %x 2 mul z 2 add div w 2 add div
+    %y 2 mul z 2 add div w 2 add div
+    %{lineto}stopped{moveto}if
+    x w 2 add div
+    y w 2 add div
+    z w 2 add div
+    0 4 array astore
+    %dup ==
+    PM matmul
+    dup %==()=
+    aload pop
+    aload pop{w z y x}{exch def}forall
+    %x 2 mul z 2 add div w 2 add div
+    %y 2 mul z 2 add div w 2 add div
+    %aload pop pop pop
+    x z {lineto}stopped{moveto}if
+}bind def
+
+/V[0 1 15{[exch dup m 1 index 2 idiv m 2 index 4 idiv m 4 3 roll 8 idiv m]}for]
+def
+
+/lineto{{lineto}stopped{moveto}if}bind def
+0 2 360 { /i exch def
+%/i 0 def
+%{
+    %/i i 1 add store
+
+    /ARGS
+        %[
+        %[ i i i i i 15 add i 30 add ] %{ 10 string cvs }forall ]
+        %[ 10 20 30 i 360 i sub i 2 mul ]
+        %[0 30 60 0 i i]
+        %[i i i 0 0 0]
+        [0 i 0 0 0 i]
+        %[0 0 0 i i i]
+        %[i i 10 add i 20 add i 30 add i 40 add i 50 add ]
+    def
+    %save mark
     gsave
-    (hc.ps)run
+
+
+300 400 translate
+currentlinewidth
+.050 %100
+dup dup scale
+div setlinewidth
+
+%(mat.ps)run
+ARGS aload pop{f e d c b a}{exch cvr def}forall
+
+/T V
+[[[1 0 0 0][0 a cos a sin neg 0][0 a sin a cos 0][0 0 0 1]] 
+     [[b cos 0 b sin 0][0 1 0 0][b sin neg 0 b cos 0][0 0 0 1]] 
+     [[c cos c sin neg 0 0][c sin c cos 0 0][0 0 1 0][0 0 0 1]] 
+     [[d cos 0 0 d sin][0 1 0 0][0 0 1 0][d sin neg 0 0 d cos]]
+     [[1 0 0 0][0 e cos 0 e sin neg][0 0 1 0][0 e sin 0 e cos]]
+     [[1 0 0 0][0 1 0 0][0 0 f cos f sin neg][0 0 f sin f cos]]]
+{//transpose exec //matmul exec} %bind
+forall def 
+erasepage
+
+currentlinewidth 20 mul setlinewidth
+    [0 1 9 11 10 8 9 13 15 11 3 7 15 14 10 2 6 14 12 8
+    0 4 12 13 5 7 6 4 5 1 3 2 0]
+    {T exch get P} forall closepath 1 setgray stroke
+currentlinewidth 20 div setlinewidth
+
+[0 1 3 2]{T exch get P}forall 0 0 1 setrgbcolor fill
+[0 8 9 1]{T exch get P}forall 0 0 1 setrgbcolor fill
+[1 9 11 3]{T exch get P}forall 0 0 1 setrgbcolor fill
+[3 11 10 2]{T exch get P}forall 0 0 1 setrgbcolor fill
+[2 10 8 0]{T exch get P}forall 0 0 1 setrgbcolor fill
+[8 9 11 10]{T exch get P}forall 0 0 1 setrgbcolor fill
+
+[0 1 9 11 10 8 9 13 15 11 3 7 15 14 10 2 6 14 12 8
+0 4 12 13 5 7 6 4 5 1 3 2 0]
+{T exch get P} forall closepath 0 setgray stroke
+
+[0 8 9 1]{T exch get P}forall 1 0 0 setrgbcolor stroke
+[1 9 11 3]{T exch get P}forall 1 0 0 setrgbcolor stroke
+[3 11 10 2]{T exch get P}forall 1 0 0 setrgbcolor stroke
+[2 10 8 0]{T exch get P}forall 1 0 0 setrgbcolor stroke
+
+
+flushpage %15000{50 dict pop}repeat %erasepage%showpage
+    
+    %cleartomark restore
+    %(i = )print i =
+%    showpage
+
+    %showpage
     grestore
 
+%} loop
 } for
 quit
