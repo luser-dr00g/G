@@ -70,7 +70,7 @@
 /iter {
     [ 4 1 roll
     { % s i f
-        2 index lt { pop pop exit } if % s i
+        2 index 2 index 0 lt{gt}{lt}ifelse { pop pop exit } if % s i
         1 index 3 1 roll % s s i
         add              % s s'
         /SELF exch 0 exch put % s
