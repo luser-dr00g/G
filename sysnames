@@ -1,0 +1,154 @@
+0 abs  a ( )@			23 concat  co (7)@				46 cvn  (N)@ (.)$
+1 add  ad (!)@			24 concatmatrix  concatm (8)@			47 cvr  (O)@ (/)$
+2 aload  al (")@		25 copy  cop (9)@				48 cvrs  (P)@ (0)$
+3 anchorsearch  an (#)@		26 count  cou (:)@				49 cvs  (Q)@ (1)$
+4 and   ($)@			27 counttomark  countt (;)@			50 cvx  (R)@ (2)$
+5 arc  ar (%)@			28 currentcmykcolor  currentc (<)@		51 def  d (S)@ (3)$
+6 arcn  (&)@			29 currentdash  currentd (=)@		52 defineusername  defineu (T)@ (4)$
+7 arct  (')@			30 currentdict  currentdi (>)@			53 dict  di (U)@ (5)$
+8 arcto  (\()@			31 currentfile  currentf (?)@			54 div  (V)@ (6)$
+9 array  arr (\))@		32 currentfont  currentfo (@)@ ( )$		55 dtransform  dt (W)@ (7)$
+10 ashow  as (*)@		33 currentgray  currentg (A)@ (!)$		56 dup  du (X)@ (8)$
+11 astore  ast (+)@		34 currentgstate  currentgs (B)@ (")$		57 end  e (Y)@ (9)$
+12 awidthshow  aw (,)@		35 currenthsbcolor  currenth (C)@ (#)$		58 eoclip  eo (Z)@ (:)$
+13 begin  b (-)@		36 currentlinecap  currentl (D)@ ($)$		59 eofill  eof ([)@ (;)$
+14 bind  bi (.)@		37 currentlinejoin  currentlinej (E)@ (%)$	60 eoviewclip  eov (\\)@ (<)$
+15 bitshift  bit (/)@		38 currentlinewidth  currentlinew (F)@ (&)$	61 eq  (])@ (=)$
+16 ceiling  c (0)@		39 currentmatrix  currentm (G)@ (')$		62 exch  ex (^)@ (>)$
+17 charpath  ch (1)@		40 currentpoint  currentp (H)@ (\()$		63 exec  exe (_)@ (?)$
+18 clear  cl (2)@		41 currentrgbcolor  currentr (I)@ (\))$		64 exit  exi (`)@ (@)$
+19 cleartomark  cleart (3)@	42 currentshared  currents (J)@ (*)$		65 file  f (a)@ (A)$
+20 clip  cli (4)@		43 curveto  curv (K)@ (+)$			66 fill  (b)@ (B)$
+21 clippath  clipp (5)@		44 cvi  cv (L)@ (,)$			67 findfont  fin (c)@ (C)$
+22 closepath  clo (6)@		45 cvlit  cvl (M)@ (-)$			68 flattenpath  fl (d)@ (D)$
+
+69 floor  flo (e)@ (E)$		101 loop  loo (e)$		133 rlineto  rl (&)#
+70 flush  flu (f)@ (F)$		102 lt  (f)$			134 rmoveto  rm (')#
+71 flushfile  flushf (g)@ (G)$	103 makefont  m (g)$ 		135 roll  ro (\()#
+72 for  fo (h)@ (H)$		104 matrix  mat (h)$		136 rotate  rot (\))#
+73 forall  fora (i)@ (I)$	105 maxlength  max (i)$		137 round  rou (*)#
+74 ge  g (j)@ (J)$		106 mod  mo (j)$		138 save  s (+)#
+75 get  (k)@ (K)$		107 moveto  mov (k)$		139 scale  sc (,)#
+76 getinterval  geti (l)@ (L)$	108 mul mu (l)$ 		140 scalefont  scalef (-)#
+77 grestore  gr (m)@ (M)$	109 ne  n (m)$			141 search  se (.)#
+78 gsave  gs (n)@ (N)$		110 neg  (n)$			142 selectfont  sel (/)#
+79 gstate  gst (o)@ (O)$	111 newpath  new (o)$		143 setbbox  set (0)#
+80 gt  (p)@ (P)$		112 not  no (p)$		144 setcachedevice  setc (1)#
+81 identmatrix  i (q)@ (Q)$	113 null  nu (q)$		145 setcachedevice2  (2)#
+82 idiv  id (r)@ (R)$		114 or  (r)$			146 setcharwidth  setch (3)#
+83 idtransform  idt (s)@ (S)$	115 pathbbox  p (s)$		147 setcmykcolor  setcm (4)#
+84 if  (t)@ (T)$		116 pathforall  pathf (t)$	148 setdash  setd (5)#
+85 ifelse  ife (u)@ (U)$	117 pop  po (u)$		149 setfont  setf (6)#
+86 image  im (v)@ (V)$		118 print  pr (v)$		150 setgray  setg (7)#
+87 imagemask  imagem (w)@ (W)$	119 printobject  printo (w)$	151 setgstate  setgs (8)#
+88 index  in (x)@ (X)$		120 put  pu (x)$		152 sethsbcolor  seth (9)#
+89 ineofill  ine (y)@ (Y)$	121 putinterval  puti (y)$	153 setlinecap  setl (:)#
+90 infill  inf (z)@ (Z)$	122 rcurveto  r (z)$		154 setlinejoin  setlinej (;)#
+91 initviewclip  ini ({)@ ([)$	123 read  re ({)$		155 setlinewidth  setlinew (<)#
+92 inueofill  inu (|)@ (\\)$	124 readhexstring  readh (|)$	156 setmatrix  setm (=)#
+93 inufill  inuf (})@ (])$	125 readline  readl (})$	157 setrgbcolor  setr (>)#
+94 invertmatrix  inv (~)@ (^)$	126 readstring  reads (~)$	158 setshared  sets (?)#
+95 itransform  it (_)$		127 rectclip  rec ( )#		159 shareddict  sh (@)#
+96 known  k (`)$		128 rectfill  rectf (!)#	160 show  sho (A)#
+97 le  l (a)$			129 rectstroke  rects (")#	161 showpage  showp (B)#
+98 length  len (b)$		130 rectviewclip  rectv (#)#	162 stop  st (C)#
+99 lineto  li (c)$		131 repeat  rep ($)#		163 stopped  stopp (D)#
+100 load  lo (d)$		132 restore  res (%)#		164 store  sto (E)#
+
+165 string  str (F)#		197 FontDirectory  F (f)#		259 StandardEncoding
+166 stringwidth  stringw (G)#	198 SharedFontDirectory  S (g)#		260 [
+167 stroke  stro (H)#		199 Courier  C (h)#			261 ]
+168 strokepath  strokep (I)#	200 Courier-Bold  Courier-B (i)#		262 atan
+169 sub  su (J)#		201 Courier-BoldOblique  Courier-BoldO (j)#	263 banddevice
+170 systemdict  sy (K)#		202 Courier-Oblique  Courier-O (k)#	264 bytesavailable
+171 token  t (L)#		203 Helvetica  H (l)#			265 cachestatus
+172 transform  tr (M)#		204 Helvetica-Bold  Helvetica-B (m)#	266 closefile
+173 translate  transl (N)#	205 Helvetica-BoldOblique  Helvetica-BoldO (n)#	267 colorimage
+174 truncate  tru (O)#		206 Helvetica-Oblique  Helvetica-O (o)#		268 condition
+175 type  ty (P)#		207 Symbol  S (p)#			269 copypage
+176 uappend  u (Q)#		208 Times-Bold  T (q)#			270 cos
+177 ucache  uc (R)#		209 Times-BoldItalic  Times-BoldI (r)#	271 countdictstack
+178 ueofill  ue (S)#		210 Times-Italic  Times-I (s)#			272 countexecstack
+179 ufill  uf (T)#		211 Times-Roman  Times-R (t)#			273 cshow
+180 undef  un (U)#		212 execuserobject  execu (u)#		274 currentblackgeneration
+181 upath  up (V)#		213 currentcolor  currentco (v)#		275 currentcacheparams
+182 userdict  us (W)#		214 currentcolorspace  currentcolors (w)#	276 currentcolorscreen
+183 ustroke  ust (X)#		215 currentglobal  currentg (x)#		277 currentcolortransfer
+184 viewclip  v (Y)#		216 execform  execf (y)#		278 currentcontext
+185 viewclippath viewclipp (Z)#	217 filter  filt (z)#		279 currentflat
+186 where  w ([)#		218 findresource  findr ({)#		280 currenthalftone
+187 widthshow  wi (\\)#		219 globaldict  glob (|)#		281 currenthalftonephase
+188 write  wr (])#		220 makepattern  makep (})#		282 currentmiterlimit
+189 writehexstring  writeh (^)#	221 setcolor  setc (~)#			283 currentobjectformat
+190 writeobject  writeo (_)#	222 setcolorspace  setcolors		284 currentpacking
+191 writestring  writes (`)#	223 setglobal  setgl			285 currentscreen
+192 wtranslation  wt (a)#	224 setpagedevice  setp		286 currentstrokeadjust
+193 xor  x (b)#			225 setpattern 	setpat		287 currenttransfer
+194 xshow  xs (c)#		256 = 				288 currentundercolorremoval
+195 xyshow  xy (d)#		257 == 				289 defaultmatrix
+196 yshow  y (e)#		258 ISOLatin1Encoding 		290 definefont
+
+291 deletefile  ()		323 packedarray 		355 sqrt
+292 detach 		324 quit 			356 srand
+293 deviceinfo 		325 rand 			357 stack
+294 dictstack 		326 rcheck 			358 status
+295 echo 		327 readonly 			359 statusdict
+296 erasepage 		328 realtime 			360 true
+297 errordict 		329 renamefile 			361 ucachestatus
+298 execstack 		330 renderbands 		362 undefinefont
+299 executeonly 	331 resetfile 			363 usertime
+300 exp 		332 reversepath 		364 ustrokepath
+301 false 		333 rootfont 			365 version
+302 filenameforall 	334 rrand 			366 vmreclaim
+303 fileposition 	335 run 			367 vmstatus
+304 fork 		336 scheck 			368 wait
+305 framedevice 	337 setblackgeneration 		369 wcheck
+306 grestoreall 	338 setcachelimit 		370 xcheck
+307 handleerror 	339 setcacheparams 		371 yield
+308 initclip 		340 setcolorscreen 		372 defineuserobject
+309 initgraphics 	341 setcolortransfer 		373 undefineuserobject
+310 initmatrix 		342 setfileposition 		374 UserObjects
+311 instroke 		343 setflat 			375 cleardictstack
+312 inustroke 		344 sethalftone 		376 A
+313 join 		345 sethalftonephase 		377 B
+314 kshow 		346 setmiterlimit 		378 C
+315 ln 			347 setobjectformat 		379 D
+316 lock 		348 setpacking 			380 E
+317 log 		349 setscreen 			381 F
+318 mark 		350 setstrokeadjust 		382 G
+319 monitor 		351 settransfer 		383 H
+320 noaccess 		352 setucacheparams 		384 I
+321 notify 		353 setundercolorremoval 	385 J
+322 nulldevice 		354 sin 	386 K
+387 L 		419 r 			451 setsystemparams
+388 M 		420 s 			452 setuserparams
+389 N 		421 t 			453 startjob
+390 O 		422 u 			454 undefineresource
+391 P 		423 v 			455 GlobalFontDirectory
+392 Q 		424 w 			456 ASCII85Decode
+393 R 		425 x 			457 ASCII85Encode
+394 S 		426 y 			458 ASCIIHexDecode
+395 T 		427 z 			459 ASCIIHexEncode
+396 U 		428 setvmthreshold 	460 CCITTFaxDecode
+397 V 		429 << 			461 CCITTFaxEncode
+398 W 		430 >> 			462 DCTDecode
+399 X 		431 currentcolorrendering 463 DCTEncode
+400 Y 		432 currentdevparams 	464 LZWDecode
+401 Z 		433 currentoverprint 	465 LZWEncode
+402 a 		434 currentpagedevice 	466 NullEncode
+403 b 		435 currentsystemparams 467 RunLengthDecode
+404 c 		436 currentuserparams 	468 RunLengthEncode
+405 d 		437 defineresource 	469 SubFileDecode
+406 e 		438 findencoding 	470 CIEBasedA
+407 f 		439 gcheck 		471 CIEBasedABC
+408 g 		440 glyphshow 		472 DeviceCMYK
+409 h 		441 languagelevel 	473 DeviceGray
+410 i 		442 product 		474 DeviceRGB
+411 j 		443 pstack 		475 Indexed
+412 k 		444 resourceforall 	476 Pattern
+413 l 		445 resourcestatus 	477 Separation
+414 m 		446 revision 		478 CIEBasedDEF
+415 n 		447 serialnumber 	479 CIEBasedDEFG
+416 o 		448 setcolorrendering 	480 DeviceN
+417 p 		449 setdevparams
+418 q 		450 setoverprint
